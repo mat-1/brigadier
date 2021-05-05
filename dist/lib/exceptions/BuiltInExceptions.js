@@ -65,6 +65,7 @@ class BuiltInExceptions {
         return BuiltInExceptions.DISPATCHER_PARSE_EXCEPTION;
     }
 }
+exports.default = BuiltInExceptions;
 BuiltInExceptions.FLOAT_TOO_SMALL = new DynamicCommandExceptionType_1.default((found, min) => new LiteralMessage_1.default("Float must not be less than " + min + ", found " + found));
 BuiltInExceptions.FLOAT_TOO_BIG = new DynamicCommandExceptionType_1.default((found, max) => new LiteralMessage_1.default("Float must not be more than " + max + ", found " + found));
 BuiltInExceptions.INTEGER_TOO_SMALL = new DynamicCommandExceptionType_1.default((found, min) => new LiteralMessage_1.default("Integer must not be less than " + min + ", found " + found));
@@ -84,4 +85,3 @@ BuiltInExceptions.DISPATCHER_UNKNOWN_COMMAND = new SimpleCommandExceptionType_1.
 BuiltInExceptions.DISPATCHER_UNKNOWN_ARGUMENT = new SimpleCommandExceptionType_1.default(new LiteralMessage_1.default("Incorrect argument for command"));
 BuiltInExceptions.DISPATCHER_EXPECTED_ARGUMENT_SEPARATOR = new SimpleCommandExceptionType_1.default(new LiteralMessage_1.default("Expected whitespace to end one argument, but found trailing data"));
 BuiltInExceptions.DISPATCHER_PARSE_EXCEPTION = new DynamicCommandExceptionType_1.default(message => new LiteralMessage_1.default(("Could not parse command: " + message)));
-exports.default = BuiltInExceptions;

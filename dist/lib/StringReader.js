@@ -67,8 +67,8 @@ class StringReader {
         if (number.length === 0) {
             throw CommandSyntaxException_1.default.BUILT_IN_EXCEPTIONS.readerExpectedInt().createWithContext(this);
         }
-        const result = parseInt(number);
-        if (isNaN(result) || result !== parseFloat(number)) {
+        const result = parseFloat(number);
+        if (isNaN(result) || result !== Math.round(result)) {
             this.cursor = start;
             throw CommandSyntaxException_1.default.BUILT_IN_EXCEPTIONS.readerInvalidInt().createWithContext(this, number);
         }
@@ -85,9 +85,7 @@ class StringReader {
             throw CommandSyntaxException_1.default.BUILT_IN_EXCEPTIONS.readerExpectedFloat().createWithContext(this);
         }
         const result = parseFloat(number);
-        const strictParseFloatTest = parseFloat(number.substring(result.toString().length, this.cursor));
-        if (isNaN(result) || (!isNaN(strictParseFloatTest) &&
-            strictParseFloatTest !== 0)) {
+        if (isNaN(result) || result !== Number(number)) {
             this.cursor = start;
             throw CommandSyntaxException_1.default.BUILT_IN_EXCEPTIONS.readerInvalidFloat().createWithContext(this, number);
         }

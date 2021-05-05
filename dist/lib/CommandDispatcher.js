@@ -1,12 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -288,26 +280,24 @@ class CommandDispatcher {
         }
         return self;
     }
-    getCompletionSuggestions(parse, cursor = parse.getReader().getTotalLength()) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let context = parse.getContext();
-            let nodeBeforeCursor = context.findSuggestionContext(cursor);
-            let parent = nodeBeforeCursor.parent;
-            let start = Math.min(nodeBeforeCursor.startPos, cursor);
-            let fullInput = parse.getReader().getString();
-            let truncatedInput = fullInput.substring(0, cursor);
-            let futures = [];
-            for (let node of parent.getChildren()) {
-                let future = yield Suggestions_1.default.empty();
-                try {
-                    future = yield node.listSuggestions(context.build(truncatedInput), new SuggestionsBuilder_1.default(truncatedInput, start));
-                }
-                catch (ignored) {
-                }
-                futures.push(future);
+    async getCompletionSuggestions(parse, cursor = parse.getReader().getTotalLength()) {
+        let context = parse.getContext();
+        let nodeBeforeCursor = context.findSuggestionContext(cursor);
+        let parent = nodeBeforeCursor.parent;
+        let start = Math.min(nodeBeforeCursor.startPos, cursor);
+        let fullInput = parse.getReader().getString();
+        let truncatedInput = fullInput.substring(0, cursor);
+        let futures = [];
+        for (let node of parent.getChildren()) {
+            let future = await Suggestions_1.default.empty();
+            try {
+                future = await node.listSuggestions(context.build(truncatedInput), new SuggestionsBuilder_1.default(truncatedInput, start));
             }
-            return Promise.resolve(Suggestions_1.default.merge(fullInput, futures));
-        });
+            catch (ignored) {
+            }
+            futures.push(future);
+        }
+        return Promise.resolve(Suggestions_1.default.merge(fullInput, futures));
     }
     getRoot() {
         return this.root;

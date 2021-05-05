@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.argument = void 0;
 const ArgumentCommandNode_1 = __importDefault(require("../tree/ArgumentCommandNode"));
 const ArgumentBuilder_1 = __importDefault(require("./ArgumentBuilder"));
 class RequiredArgumentBuilder extends ArgumentBuilder_1.default {

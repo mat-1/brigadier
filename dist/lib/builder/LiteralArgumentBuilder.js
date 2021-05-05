@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.literal = void 0;
 const LiteralCommandNode_1 = __importDefault(require("../tree/LiteralCommandNode"));
 const ArgumentBuilder_1 = __importDefault(require("./ArgumentBuilder"));
 class LiteralArgumentBuilder extends ArgumentBuilder_1.default {

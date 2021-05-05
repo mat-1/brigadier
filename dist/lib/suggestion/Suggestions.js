@@ -66,5 +66,5 @@ class Suggestions {
         return new Suggestions(range, sorted);
     }
 }
-Suggestions.EMPTY = new Suggestions(StringRange_1.default.at(0), []);
 exports.default = Suggestions;
+Suggestions.EMPTY = new Suggestions(StringRange_1.default.at(0), []);

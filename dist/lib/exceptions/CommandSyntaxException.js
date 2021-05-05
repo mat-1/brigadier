@@ -51,6 +51,6 @@ class CommandSyntaxException extends Error {
         return this.message;
     }
 }
+exports.default = CommandSyntaxException;
 CommandSyntaxException.CONTEXT_AMOUNT = 10;
 CommandSyntaxException.BUILT_IN_EXCEPTIONS = new BuiltInExceptions_1.default();
-exports.default = CommandSyntaxException;
