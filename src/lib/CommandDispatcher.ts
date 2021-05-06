@@ -43,7 +43,7 @@ export default class CommandDispatcher<S> {
         this.consumer = consumer;
     }
     
-    public execute(input: string | StringReader | ParseResults<S>, source: S = null): number {
+    public async execute(input: string | StringReader | ParseResults<S>, source: S = null): Promise<number> {
 
 		if (typeof input === "string")
 			input = new StringReader(input);
@@ -115,7 +115,7 @@ export default class CommandDispatcher<S> {
                 } else if (context.getCommand() != null) {
                     foundCommand = true;
                     try {					
-                        let value = context.getCommand()(context);
+                        let value = await context.getCommand()(context);
                         result += value;
                         this.consumer.onCommandComplete(context, true, value);
                         successfulForks++;

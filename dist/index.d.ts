@@ -2,7 +2,7 @@
 // Project: Brigadier
 // Definitions by: Remtori <https://github.com/Remtori>
 declare interface Command<S> {
-    (context: CommandContext<S>): number;
+    (context: CommandContext<S>): Promise<number>;
 }
 declare interface ResultConsumer<S> {    
     onCommandComplete(context: CommandContext<S>, success: boolean, result: number): void;
